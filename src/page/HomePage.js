@@ -4,16 +4,17 @@ import axios from "axios";
 import { useRef } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import { Header } from "../layout";
 import "swiper/css";
+import "swiper/css/grid";
 import "swiper/css/pagination";
 
-import "./styles.css";
+import "../page/HomePage.css";
 
 // import required modules
-import { Pagination } from "swiper/modules";
+import { Grid, Pagination } from "swiper/modules";
 
-function Main() {
+function HomePage() {
   const API_KEY = "4079dea8c60daa01c357d2bdebd8dd6f";
   const options = {
     method: "GET",
@@ -42,14 +43,16 @@ function Main() {
   return (
     <div>
       <h1>Trending Movies</h1>
-
       <Swiper
         slidesPerView={3}
+        // grid={{
+        //   rows: 2,
+        // }}
         spaceBetween={30}
         pagination={{
           clickable: true,
         }}
-        modules={[Pagination]}
+        modules={[Grid, Pagination]}
         className="mySwiper"
       >
         {movies.map((movie) => (
@@ -66,4 +69,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default HomePage;
