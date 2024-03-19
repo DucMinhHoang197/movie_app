@@ -2,17 +2,17 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useRef } from "react";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Header } from "../layout";
-import "swiper/css";
-import "swiper/css/grid";
-import "swiper/css/pagination";
 
-import "../page/HomePage.css";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Header } from "../layout";
+
+import "./HomePage.css";
 
 // import required modules
-import { Grid, Pagination } from "swiper/modules";
+import { Pagination, Navigation } from "swiper/modules";
 
 function HomePage() {
   const API_KEY = "4079dea8c60daa01c357d2bdebd8dd6f";
@@ -41,25 +41,22 @@ function HomePage() {
   const [movies, setMovies] = useState([]);
 
   return (
-    <div>
-      <h1>Trending Movies</h1>
+    <div className="SwiperSlide">
+      <Header />
       <Swiper
-        slidesPerView={3}
-        // grid={{
-        //   rows: 2,
-        // }}
-        spaceBetween={30}
         pagination={{
-          clickable: true,
+          type: "progressbar",
         }}
-        modules={[Grid, Pagination]}
+        navigation={true}
+        modules={[Pagination, Navigation]}
         className="mySwiper"
       >
         {movies.map((movie) => (
           <SwiperSlide>
             <img
+              className="poster"
               key={movie.id}
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
               alt={movie.title || "movie image"}
             />
           </SwiperSlide>
