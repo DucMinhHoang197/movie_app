@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../components/Logo";
+import useStore from "../store";
 
 import "./Header.css";
 import SearchIcon from "@mui/icons-material/Search";
@@ -13,16 +13,23 @@ import { useState } from "react";
 function Header() {
   const auth = useAuth();
   let navigate = useNavigate();
+  const urlMovie = useStore((state) => state.urlMovie);
   const { user } = useAuth();
   const [searchText, setSearchText] = useState("");
+  const handleSearch = () => {
+    console.log("Searching for:", searchText);
+  };
+  const handleClickMovie = () => {
+    urlMovie("https://api.themoviedb.org/3/trending/movie/day");
+  };
   return (
     <div className="header">
       <div className="nav">
         <h1>MTV </h1>
         <h4>All</h4>
-        <h4>Movie</h4>
-        <h4>Peopel</h4>
-        <h4>TV show</h4>
+        <button onClick={handleClickMovie}>MOVIE</button>
+        <h4>PEOPEL</h4>
+        <h4>TV SHOW</h4>
       </div>
       <div className="searchbt">
         {/* <div> */}

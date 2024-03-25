@@ -4,11 +4,10 @@ import axios from "axios";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import useStore from "../store";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Header } from "../layouts";
-import { MOVIE_DB_URL } from "../constants/movieDB";
-import { generateRequestAction } from "../helpers/movieDB";
 
 import TheatersIcon from "@mui/icons-material/Theaters";
 import Typography from "@mui/material/Typography";
@@ -24,22 +23,28 @@ import { Pagination, Navigation } from "swiper/modules";
 function HomePage() {
   const auth = useAuth();
   let navigate = useNavigate();
-
-  const requestOptions = generateRequestAction(
-    "GET",
-    MOVIE_DB_URL.GET_ALL_TRENDING_MOVIE
-  );
-
+  const urlMovie = useStore((state) => state.url);
+  const options = {
+    method: "GET",
+    url: { urlMovie },
+    params: { language: "en-US" },
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMzkzZmE0MGI1NmZhYTY4MDc2NTQ5NGQwNWUyODEzOSIsInN1YiI6IjY1ZjkxNjI4Nzk4Yzk0MDE0NzE0ZmU5NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.kjW4_CP4pfISPXSZFGRtOgTpgeAwrqe7Dh6HcGof2WQ",
+    },
+  };
+  console.log(options);
   useEffect(() => {
     axios
-      .request(requestOptions)
+      .request(options)
       .then(function (response) {
         setMovies(response.data.results);
       })
       .catch(function (error) {
         console.error(error);
       });
-  }, []);
+  }, [urlMovie]);
 
   const [movies, setMovies] = useState([]);
   console.log(movies, setMovies);
