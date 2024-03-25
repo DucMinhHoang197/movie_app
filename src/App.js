@@ -1,12 +1,13 @@
 import React from "react";
-import index from "./layout/index";
-import HomePage from "./page/HomePage";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
+import Router from "./routes";
+import { AuthProvider } from "./contexts/AuthContext";
+
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-    </Routes>
+    <AuthProvider>
+      <Router />
+    </AuthProvider>
   );
 }
 

@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  justify-content: space-around;
+  color: whitesmoke !important;
+  align-items: center !important;
+  position: absolute;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.nav {
+  display: flex;
+  justify-content: space-around;
+  /* background-color: red !important; */
+  width: 70%;
+  align-items: center !important;
+  padding-right: 50px;
+  padding-left: 50px;
+}
+.searchbt {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  /* background-color: greenyellow; */
+  width: 30%;
+  padding-right: 100px;
+  flex-direction: row;
+}
+.login-text {
+  margin-left: 20px;
+}
