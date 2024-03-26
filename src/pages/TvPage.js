@@ -20,11 +20,11 @@ import "swiper/css/navigation";
 import "./HomePage.css";
 
 import { Pagination, Navigation } from "swiper/modules";
-function MoviePage() {
+function TvPage() {
   const auth = useAuth();
   const optionMovie = {
     method: "GET",
-    url: "https://api.themoviedb.org/3/trending/movie/day",
+    url: "https://api.themoviedb.org/3/trending/tv/day",
     params: { language: "en-US" },
     headers: {
       accept: "application/json",
@@ -97,4 +97,4 @@ function MoviePage() {
   );
 }
 
-export default MoviePage;
+export default TvPage;

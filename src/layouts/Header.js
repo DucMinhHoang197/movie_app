@@ -17,23 +17,37 @@ function Header() {
   const { user } = useAuth();
   const [searchText, setSearchText] = useState("");
   const handleSearch = () => {
-    console.log("Searching for:", searchText);
+   navigate(`/search/${searchText}`);
   };
   const handleClickMovie = () => {
-    urlMovie("https://api.themoviedb.org/3/trending/movie/day");
+    navigate("/movie");
   };
+  const handleClickTv = () => {
+    navigate("/tv");
+  };
+  const handleClickAll = () => {
+    navigate("/");
+  };
+  const handleClickAdd = () => {};
+  
   return (
     <div className="header">
       <div className="nav">
-        <h1>MTV </h1>
-        <h4>All</h4>
-        <button onClick={handleClickMovie}>MOVIE</button>
-        <h4>PEOPEL</h4>
-        <h4>TV SHOW</h4>
+        <h1 onClick={handleClickAll}>MTV</h1>
+        <button className="transparent-button" onClick={handleClickMovie}>
+          MOVIE
+        </button>
+
+        <button className="transparent-button" onClick={handleClickTv}>
+          TV SHOW
+        </button>
+        <button className="transparent-button" onClick={handleClickAdd}>
+          FAVORITE
+        </button>
       </div>
       <div className="searchbt">
         {/* <div> */}
-        <SearchIcon />
+        <SearchIcon onClick={()=>{handleSearch(searchText)}} />
 
         <input
           className="search-input"
