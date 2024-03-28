@@ -2,13 +2,15 @@ import * as React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import BlankLayout from "../layouts/BlankLayout";
 import MainLayout from "../layouts/MainLayout";
-import MoviePage from "../pages/MoviePage";
+import DetailPage from "../pages/DetailPage";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
-import AuthRequire from "./AuthRequire";
+import MoviePage from "../pages/MoviePage";
 import TvPage from "../pages/TvPage";
-import DetailPage from "../pages/DetailPage";
 import SearchPage from "../pages/SearchPage";
+
+import AuthRequire from "./AuthRequire";
+
 function Router() {
   return (
     <Routes>
@@ -27,7 +29,7 @@ function Router() {
         <Route path="/search/:query" element={<SearchPage />} />
       </Route>
 
-      <Route path="/" element={<BlankLayout />}>
+      <Route element={<BlankLayout />}>
         <Route path="/login" element={<LoginPage />} />
       </Route>
     </Routes>

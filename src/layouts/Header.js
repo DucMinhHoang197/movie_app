@@ -17,7 +17,7 @@ function Header() {
   const { user } = useAuth();
   const [searchText, setSearchText] = useState("");
   const handleSearch = () => {
-   navigate(`/search/${searchText}`);
+    navigate(`/search/${searchText}`);
   };
   const handleClickMovie = () => {
     navigate("/movie");
@@ -28,8 +28,10 @@ function Header() {
   const handleClickAll = () => {
     navigate("/");
   };
-  const handleClickAdd = () => {};
-  
+  const handleClickFavorite = () => {
+    navigate("/favorite");
+  };
+
   return (
     <div className="header">
       <div className="nav">
@@ -41,13 +43,17 @@ function Header() {
         <button className="transparent-button" onClick={handleClickTv}>
           TV SHOW
         </button>
-        <button className="transparent-button" onClick={handleClickAdd}>
+        <button className="transparent-button" onClick={handleClickFavorite}>
           FAVORITE
         </button>
       </div>
       <div className="searchbt">
         {/* <div> */}
-        <SearchIcon onClick={()=>{handleSearch(searchText)}} />
+        <SearchIcon
+          onClick={() => {
+            handleSearch(searchText);
+          }}
+        />
 
         <input
           className="search-input"

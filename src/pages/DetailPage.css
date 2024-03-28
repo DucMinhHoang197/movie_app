@@ -5,36 +5,72 @@ html,
 body {
   position: relative;
   height: 100%;
+  background-color: black;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
-body {
-  background: #eee;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  color: #000;
-  margin: 0;
-  padding: 0;
-}
-
-.swiper {
-  width: 100%;
-  height: 100%;
-}
-
-.swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-
-  /* Center slide text vertically */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.swiper-slide img {
+.MuiStack-root {
   display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  color: white;
+  display: flex;
+  .details-container {
+    .details-container-background img {
+      width: 100%;
+      height: 100%;
+      filter: blur(7px);
+      -webkit-filter: blur(3px);
+    }
+    .image-inner {
+      position: absolute;
+      top: 20%;
+      left: 10%;
+      display: flex;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      .box-poster img {
+        width: 300px;
+        height: 450px;
+        vertical-align: middle;
+      }
+      .box-details {
+        margin-left: 7%;
+        .original-title-details {
+          padding-top: 1%;
+          font-size: 260%;
+          .release-date {
+            opacity: 0.8;
+          }
+        }
+        .genres-details {
+          display: flex;
+          gap: 0.7rem;
+          li {
+            list-style-type: none;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            border-radius: 5px;
+          }
+        }
+        .overview-details {
+          font-size: 150%;
+          text-align: left;
+          justify-content: center;
+          p {
+            font-weight: bolder;
+            font-size: larger;
+          }
+        }
+        .created-by-details {
+          display: flex;
+          margin-top: 10%;
+          gap: 3rem;
+          li {
+            list-style-type: none;
+            font-size: 170%;
+          }
+        }
+      }
+    }
+  }
 }

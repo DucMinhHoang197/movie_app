@@ -6,6 +6,8 @@ import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import useStore from "../store";
+import { generateRequestAction } from "../helpers/movieDB";
+import { MOVIE_DB } from "../constants/movieDB";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Header } from "../layouts";
@@ -13,6 +15,7 @@ import { Header } from "../layouts";
 import TheatersIcon from "@mui/icons-material/Theaters";
 import Typography from "@mui/material/Typography";
 import InsertChartIcon from "@mui/icons-material/InsertChart";
+import { Button } from "@mui/material";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -22,20 +25,12 @@ import "./HomePage.css";
 import { Pagination, Navigation } from "swiper/modules";
 function TvPage() {
   const auth = useAuth();
-  const optionMovie = {
-    method: "GET",
-    url: "https://api.themoviedb.org/3/trending/tv/day",
-    params: { language: "en-US" },
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMzkzZmE0MGI1NmZhYTY4MDc2NTQ5NGQwNWUyODEzOSIsInN1YiI6IjY1ZjkxNjI4Nzk4Yzk0MDE0NzE0ZmU5NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.kjW4_CP4pfISPXSZFGRtOgTpgeAwrqe7Dh6HcGof2WQ",
-    },
-  };
-  console.log(optionMovie);
+  const requestOptions = generateRequestAction("GET", MOVIE_DB.GET_TV);
+  const handleClickButton = () => {};
+  const handleClickAdd = () => {};
   useEffect(() => {
     axios
-      .request(optionMovie)
+      .request(requestOptions)
       .then(function (response) {
         setMovies(response.data.results);
       })
@@ -51,7 +46,6 @@ function TvPage() {
   }
   return (
     <div className="SwiperSlide">
-      <Header />
       <Swiper
         pagination={{
           type: "progressbar",
@@ -87,6 +81,24 @@ function TvPage() {
                 <div className="overview">
                   <br />
                   <Typography variant="h10"> {movie.overview}</Typography>
+                </div>
+                <div className="buttonLearnmore">
+                  <div className="button">
+                    <Button
+                      variant="outlined"
+                      sx={{ color: "white", border: "1px solid white" }}
+                      onClick={() => handleClickButton(movie.id)}
+                    >
+                      LEARN MORE
+                    </Button>
+                  </div>
+                  <button className="bticon" onClick={handleClickAdd}>
+                    {/* {checkIfFavorite ? (
+                      <FavoriteIcon />
+                    ) : (
+                      <FavoriteBorderIcon />
+                    )} */}
+                  </button>
                 </div>
               </div>
             </SwiperSlide>

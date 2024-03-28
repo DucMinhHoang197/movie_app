@@ -4,15 +4,17 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Header } from "../layouts";
+import { MOVIE_DB } from "../constants/movieDB";
+import { generateRequestAction } from "../helpers/movieDB";
 
 import TheatersIcon from "@mui/icons-material/Theaters";
 import Typography from "@mui/material/Typography";
 import InsertChartIcon from "@mui/icons-material/InsertChart";
 import Button from "@mui/material/Button";
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -24,21 +26,18 @@ import { Pagination, Navigation } from "swiper/modules";
 function HomePage() {
   const auth = useAuth();
   let navigate = useNavigate();
-  // const urlMovie = useStore((state) => state.url);
-  const optionAll = {
-    method: "GET",
-    url: "https://api.themoviedb.org/3/trending/all/day",
-    params: { language: "en-US" },
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMzkzZmE0MGI1NmZhYTY4MDc2NTQ5NGQwNWUyODEzOSIsInN1YiI6IjY1ZjkxNjI4Nzk4Yzk0MDE0NzE0ZmU5NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.kjW4_CP4pfISPXSZFGRtOgTpgeAwrqe7Dh6HcGof2WQ",
-    },
+  const [movies, setMovies] = useState([]);
+  const [favoriteIds, setFavoriteIds] = useState([]);
+  const handleClickAdd = (id) => {};
+  const checkIfFavorite = (Id) => {};
+  const handleClickButton = (id) => {
+    navigate(`/detail/${id}`);
   };
-  console.log(optionAll);
+  const requestOptions = generateRequestAction("GET", MOVIE_DB.GET_ALL);
+
   useEffect(() => {
     axios
-      .request(optionAll)
+      .request(requestOptions)
       .then(function (response) {
         setMovies(response.data.results);
       })
@@ -46,15 +45,11 @@ function HomePage() {
         console.error(error);
       });
   }, []);
-
-  const [movies, setMovies] = useState([]);
-  console.log(movies,"1111111111111111");
+  const currentId = parseInt(localStorage.getItem("currentId")) || 0;
   if (!auth.user) {
     return <p>You are not logged in.</p>;
   }
-  const handleClickButton=(id)=>{
-    navigate(`/detail/${id}`)
-  }
+
   return (
     <div className="SwiperSlide">
       <Header />
@@ -95,21 +90,26 @@ function HomePage() {
                   <Typography variant="h10"> {movie.overview}</Typography>
                 </div>
                 <br />
-              <div className="buttonLearnmore">
-                <div className="button">
-                <Button
-                  variant="outlined"
-                  sx={{ color: "white", border: "1px solid white" }}
-                  onClick={()=>handleClickButton(movie.id)}
-                >
-                  LEARN MORE
-                </Button>
+
+                <div className="buttonLearnmore">
+                  <div className="button">
+                    <Button
+                      variant="outlined"
+                      sx={{ color: "white", border: "1px solid white" }}
+                      onClick={() => handleClickButton(movie.id)}
+                    >
+                      LEARN MORE
+                    </Button>
+                  </div>
+                  <button className="bticon" onClick={handleClickAdd}>
+                    {/* {checkIfFavorite ? (
+                      <FavoriteIcon />
+                    ) : (
+                      <FavoriteBorderIcon />
+                    )} */}
+                  </button>
                 </div>
-                <button className="bticon">
-                <FavoriteIcon/>
-                </button>
               </div>
-            </div>
             </SwiperSlide>
           );
         })}
