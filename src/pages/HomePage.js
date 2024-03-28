@@ -32,12 +32,12 @@ function HomePage() {
   const handleClickAdd = (id) => {
     toggleFavorite(id);
   };
-  console.log(toggleFavorite, "111111111111");
-  const handleClickButton = (id) => {
-    navigate(`/detail/${id}`);
+  // console.log(toggleFavorite, "111111111111");
+  const handleClickButton = (type, id) => {
+    navigate(`/detail/${type}/${id}`);
   };
   const requestOptions = generateRequestAction("GET", MOVIE_DB.GET_ALL);
-
+  console.log(isMovieFavorite, "11111111");
   useEffect(() => {
     axios
       .request(requestOptions)
@@ -104,8 +104,11 @@ function HomePage() {
                       LEARN MORE
                     </Button>
                   </div>
-                  <button className="bticon" onClick={handleClickAdd}>
-                    {isMovieFavorite ? (
+                  <button
+                    className="bticon"
+                    onClick={() => toggleFavorite(movie.id)}
+                  >
+                    {isMovieFavorite(movie.id) ? (
                       <FavoriteIcon />
                     ) : (
                       <FavoriteBorderIcon />

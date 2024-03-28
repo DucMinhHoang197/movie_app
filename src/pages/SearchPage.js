@@ -22,7 +22,7 @@ function SearchPage() {
 
   const optionsearch = {
     method: "GET",
-    url: `https://api.themoviedb.org/3/search/movie?query=${param}&include_adult=false&language=en-US&page=1`,
+    url: `https://api.themoviedb.org/3/search/movie?query=${param.query}&include_adult=false&language=en-US&page=1`,
     // params: {
     //   language: "en-US",
     //   page: "1",

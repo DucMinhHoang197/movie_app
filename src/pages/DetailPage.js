@@ -17,10 +17,10 @@ function DetailPage() {
   const auth = useAuth();
   const [movies, setMovies] = useState();
   const params = useParams();
-
+  console.log(params.type, "type");
   const options = {
     method: "GET",
-    url: `https://api.themoviedb.org/3/tv/${params.id}`,
+    url: `https://api.themoviedb.org/3/'${params.type}'/'${params.id}'`,
     params: { language: "en-US" },
     headers: {
       accept: "application/json",
@@ -48,7 +48,7 @@ function DetailPage() {
         <div className="details-container-background">
           <img
             resizeMode="auto"
-            src={`https://image.tmdb.org/t/p/w500${movies.backdrop_path}`}
+            src={`https://media.themoviedb.org/t/p/w1920_and_h1080_multi_faces/${movies.backdrop_path}`}
           ></img>
         </div>
         <div className="image-inner">
