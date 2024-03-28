@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 const useFavorite = () => {
   const [favorites, setFavorites] = useState([]);
 
@@ -9,11 +10,11 @@ const useFavorite = () => {
   }, []);
 
   const toggleFavorite = (id) => {
-    // const newFavorites = favorites.includes(id)
-    //   ? favorites.filter((favorite) => favorite !== id)
-    //   : [...favorites, id];
-    // setFavorites(newFavorites);
-    // localStorage.setItem('favorites', JSON.stringify(newFavorites));
+    const newFavorites = favorites.includes(id)
+      ? favorites.filter((favorite) => favorite !== id)
+      : [...favorites, id];
+    setFavorites(newFavorites);
+    localStorage.setItem("favorites", JSON.stringify(newFavorites));
   };
 
   const isMovieFavorite = (id) => {
@@ -25,3 +26,4 @@ const useFavorite = () => {
     isMovieFavorite,
   };
 };
+export default useFavorite;

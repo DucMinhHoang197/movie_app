@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Header } from "../layouts";
 import { MOVIE_DB } from "../constants/movieDB";
 import { generateRequestAction } from "../helpers/movieDB";
+import useFavorite from "../hooks/useFavorite";
 
 import TheatersIcon from "@mui/icons-material/Theaters";
 import Typography from "@mui/material/Typography";
@@ -24,12 +25,14 @@ import "./HomePage.css";
 import { Pagination, Navigation } from "swiper/modules";
 
 function HomePage() {
+  const { toggleFavorite, isMovieFavorite } = useFavorite();
   const auth = useAuth();
   let navigate = useNavigate();
   const [movies, setMovies] = useState([]);
-  const [favoriteIds, setFavoriteIds] = useState([]);
-  const handleClickAdd = (id) => {};
-  const checkIfFavorite = (Id) => {};
+  const handleClickAdd = (id) => {
+    toggleFavorite(id);
+  };
+  console.log(toggleFavorite, "111111111111");
   const handleClickButton = (id) => {
     navigate(`/detail/${id}`);
   };
@@ -45,7 +48,7 @@ function HomePage() {
         console.error(error);
       });
   }, []);
-  const currentId = parseInt(localStorage.getItem("currentId")) || 0;
+
   if (!auth.user) {
     return <p>You are not logged in.</p>;
   }
@@ -102,11 +105,11 @@ function HomePage() {
                     </Button>
                   </div>
                   <button className="bticon" onClick={handleClickAdd}>
-                    {/* {checkIfFavorite ? (
+                    {isMovieFavorite ? (
                       <FavoriteIcon />
                     ) : (
                       <FavoriteBorderIcon />
-                    )} */}
+                    )}
                   </button>
                 </div>
               </div>
