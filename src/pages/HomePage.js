@@ -70,7 +70,7 @@ function HomePage() {
               <img
                 className="poster"
                 key={movie.id}
-                src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+                src={`https://media.themoviedb.org/t/p/w1920_and_h1080_multi_faces${movie.backdrop_path}`}
                 alt={movie.title || "movie image"}
               />
               <div className="infor">
@@ -108,9 +108,9 @@ function HomePage() {
                   </div>
                   <button
                     className="bticon"
-                    onClick={() => toggleFavorite(movie.id)}
+                    onClick={() => toggleFavorite(movie)}
                   >
-                    {isMovieFavorite(movie.id) ? (
+                    {isMovieFavorite(movie) ? (
                       <FavoriteIcon />
                     ) : (
                       <FavoriteBorderIcon />

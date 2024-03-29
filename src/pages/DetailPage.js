@@ -60,9 +60,9 @@ function DetailPage() {
           <div className="box-details">
             <div className="original-title-details">
               {movies.original_name}{" "}
-              <span className="release-date">
+              {/* <span className="release-date">
                 ({movies.first_air_date.substring(0, 4)})
-              </span>
+              </span> */}
             </div>
             <div className="genres-details">
               {movies.genres.map((item) => (
@@ -73,11 +73,11 @@ function DetailPage() {
               <p>Overview</p>
               {movies.overview}
             </div>
-            <div className="created-by-details">
+            {/* <div className="created-by-details">
               {movies.created_by.map((item) => (
                 <li>{item.name}</li>
               ))}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

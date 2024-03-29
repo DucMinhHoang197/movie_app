@@ -49,6 +49,8 @@ body {
   width: 30%;
   left: 100px;
   top: 400px;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
 }
 .title {
   display: flex;
