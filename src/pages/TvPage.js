@@ -3,9 +3,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import useStore from "../store";
+import useFavorite from "../hooks/useFavorite";
+import { useNavigate } from "react-router-dom";
+
 import { generateRequestAction } from "../helpers/movieDB";
 import { MOVIE_DB } from "../constants/movieDB";
 
@@ -16,6 +17,8 @@ import TheatersIcon from "@mui/icons-material/Theaters";
 import Typography from "@mui/material/Typography";
 import InsertChartIcon from "@mui/icons-material/InsertChart";
 import { Button } from "@mui/material";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -25,9 +28,13 @@ import "./HomePage.css";
 import { Pagination, Navigation } from "swiper/modules";
 function TvPage() {
   const auth = useAuth();
+  let navigate = useNavigate();
+  const { toggleFavorite, isMovieFavorite } = useFavorite();
   const requestOptions = generateRequestAction("GET", MOVIE_DB.GET_TV);
-  const handleClickButton = () => {};
-  const handleClickAdd = () => {};
+  const handleClickButton = (type, id) => {
+    navigate(`/detail/${type}/${id}`);
+  };
+
   useEffect(() => {
     axios
       .request(requestOptions)
@@ -87,17 +94,22 @@ function TvPage() {
                     <Button
                       variant="outlined"
                       sx={{ color: "white", border: "1px solid white" }}
-                      onClick={() => handleClickButton(movie.id)}
+                      onClick={() =>
+                        handleClickButton(movie.media_type, movie.id)
+                      }
                     >
                       LEARN MORE
                     </Button>
                   </div>
-                  <button className="bticon" onClick={handleClickAdd}>
-                    {/* {checkIfFavorite ? (
+                  <button
+                    className="bticon"
+                    onClick={() => toggleFavorite(movie.id)}
+                  >
+                    {isMovieFavorite(movie.id) ? (
                       <FavoriteIcon />
                     ) : (
                       <FavoriteBorderIcon />
-                    )} */}
+                    )}
                   </button>
                 </div>
               </div>

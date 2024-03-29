@@ -3,12 +3,12 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import useFavorite from "../hooks/useFavorite";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Header } from "../layouts";
 import { MOVIE_DB } from "../constants/movieDB";
 import { generateRequestAction } from "../helpers/movieDB";
-import useFavorite from "../hooks/useFavorite";
 
 import TheatersIcon from "@mui/icons-material/Theaters";
 import Typography from "@mui/material/Typography";
@@ -99,7 +99,9 @@ function HomePage() {
                     <Button
                       variant="outlined"
                       sx={{ color: "white", border: "1px solid white" }}
-                      onClick={() => handleClickButton(movie.id)}
+                      onClick={() =>
+                        handleClickButton(movie.media_type, movie.id)
+                      }
                     >
                       LEARN MORE
                     </Button>

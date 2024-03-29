@@ -3,26 +3,32 @@ import { useParams } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import useFavorite from "../hooks/useFavorite";
+import { useNavigate } from "react-router-dom";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import TheatersIcon from "@mui/icons-material/Theaters";
 import Typography from "@mui/material/Typography";
 import InsertChartIcon from "@mui/icons-material/InsertChart";
 import { Button } from "@mui/material";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 import "./SearchPage.css";
-import { object } from "yup";
+
 function SearchPage() {
   const param = useParams();
   console.log(param);
   const [movies, setMovies] = useState([]);
-
-  const handleClickButton = () => {};
-  const handleClickAdd = () => {};
+  let navigate = useNavigate();
+  const { toggleFavorite, isMovieFavorite } = useFavorite();
+  const handleClickButton = (type, id) => {
+    navigate(`/detail/${type}/${id}`);
+  };
 
   const optionsearch = {
     method: "GET",
-    url: `https://api.themoviedb.org/3/search/movie?query=${param.query}&include_adult=false&language=en-US&page=1`,
+    url: `https://api.themoviedb.org/3/search/multi?query=${param.query}&include_adult=false&language=en-US&page=1`,
     // params: {
     //   language: "en-US",
     //   page: "1",
@@ -81,17 +87,22 @@ function SearchPage() {
                     <Button
                       variant="outlined"
                       sx={{ color: "white", border: "1px solid white" }}
-                      onClick={() => handleClickButton(movie.id)}
+                      onClick={() =>
+                        handleClickButton(movie.media_type, movie.id)
+                      }
                     >
                       LEARN MORE
                     </Button>
                   </div>
-                  <button className="bticon" onClick={handleClickAdd}>
-                    {/* {checkIfFavorite ? (
+                  <button
+                    className="bticon"
+                    onClick={() => toggleFavorite(movie.id)}
+                  >
+                    {isMovieFavorite(movie.id) ? (
                       <FavoriteIcon />
                     ) : (
                       <FavoriteBorderIcon />
-                    )} */}
+                    )}
                   </button>
                 </div>
               </div>

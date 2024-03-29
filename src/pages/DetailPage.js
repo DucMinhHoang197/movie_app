@@ -20,7 +20,7 @@ function DetailPage() {
   console.log(params.type, "type");
   const options = {
     method: "GET",
-    url: `https://api.themoviedb.org/3/'${params.type}'/'${params.id}'`,
+    url: `https://api.themoviedb.org/3/${params.type}/${params.id}`,
     params: { language: "en-US" },
     headers: {
       accept: "application/json",
