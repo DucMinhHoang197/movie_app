@@ -1,9 +1,9 @@
 import React from "react";
-import useStore from "../store";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 import useAuth from "../hooks/useAuth";
 
 import "./Header.css";
@@ -32,16 +32,17 @@ function Header() {
         "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMzkzZmE0MGI1NmZhYTY4MDc2NTQ5NGQwNWUyODEzOSIsInN1YiI6IjY1ZjkxNjI4Nzk4Yzk0MDE0NzE0ZmU5NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.kjW4_CP4pfISPXSZFGRtOgTpgeAwrqe7Dh6HcGof2WQ",
     },
   };
-
-  axios
-    .request(optionTVList)
-    .then(function (response) {
-      setTvList(response.data.genres);
-      console.log(response.data, "tvlist");
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
+  useEffect(() => {
+    axios
+      .request(optionTVList)
+      .then(function (response) {
+        setTvList(response.data.genres);
+        console.log(response.data, "tvlist");
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  }, []);
 
   const optionMovieList = {
     method: "GET",
@@ -53,16 +54,17 @@ function Header() {
         "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMzkzZmE0MGI1NmZhYTY4MDc2NTQ5NGQwNWUyODEzOSIsInN1YiI6IjY1ZjkxNjI4Nzk4Yzk0MDE0NzE0ZmU5NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.kjW4_CP4pfISPXSZFGRtOgTpgeAwrqe7Dh6HcGof2WQ",
     },
   };
-
-  axios
-    .request(optionMovieList)
-    .then(function (response) {
-      setMovieList(response.data.genres);
-      console.log(response.data);
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
+  useEffect(() => {
+    axios
+      .request(optionMovieList)
+      .then(function (response) {
+        setMovieList(response.data.genres);
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  }, []);
   //////////////////////////
   const handleSearch = () => {
     navigate(`/search/${searchText}`);
@@ -94,24 +96,23 @@ function Header() {
         <button className="transparent-button" onClick={handleClickFavorite}>
           FAVORITE
         </button>
-        <div>
-          <h4>Movie List:</h4>
-          <select>
+      </div>
+      <DropdownButton id="dropdown-basic-button" title="Choose_type">
+        <DropdownButton id="dropdown-basic-button" title="TV LIST">
+          <Dropdown.Item>
+            {movieList.map((tvShow) => (
+              <option key={tvShow.id}>{tvShow.name}</option>
+            ))}
+          </Dropdown.Item>
+        </DropdownButton>
+        <DropdownButton id="dropdown-basic-button" title="MOVIE LIST">
+          <Dropdown.Item>
             {movieList.map((movie) => (
               <option key={movie.id}>{movie.name}</option>
             ))}
-          </select>
-        </div>
-      </div>
-
-      <div>
-        <h2>TV List:</h2>
-        <select>
-          {tvList.map((tvShow) => (
-            <option key={tvShow.id}>{tvShow.name}</option>
-          ))}
-        </select>
-      </div>
+          </Dropdown.Item>
+        </DropdownButton>
+      </DropdownButton>
 
       <div className="searchbt">
         {/* <div> */}
