@@ -98,23 +98,6 @@ function Header() {
         </button>
       </div>
       <ChooseTypeList />
-      {/* <DropdownButton id="dropdown-basic-button" title="Choose_type">
-        <DropdownButton id="dropdown-basic-button" title="TV LIST">
-          <Dropdown.Item>
-            {movieList.map((tvShow) => (
-              <option key={tvShow.id}>{tvShow.name}</option>
-            ))}
-          </Dropdown.Item>
-        </DropdownButton>
-        <DropdownButton id="dropdown-basic-button" title="MOVIE LIST">
-          <Dropdown.Item>
-            {movieList.map((movie) => (
-              <option key={movie.id}>{movie.name}</option>
-            ))}
-          </Dropdown.Item>
-        </DropdownButton>
-      </DropdownButton> */}
-
       <div className="searchbt">
         {/* <div> */}
         <SearchIcon

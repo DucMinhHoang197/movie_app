@@ -132,12 +132,12 @@ export default function ChooseTypeList() {
   };
 
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex", marginLeft: "10px" }}>
       {["TvList", "MvList"].map((anchor) => (
         <React.Fragment key={anchor}>
           <Button
             onClick={toggleDrawer(anchor, true)}
-            style={{ color: "white" }}
+            style={{ color: "white", marginRight: "40px" }}
           >
             {anchor}
           </Button>

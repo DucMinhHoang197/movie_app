@@ -3,6 +3,14 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
+import Box from "@mui/material/Box";
+import ImageList from "@mui/material/ImageList";
+import ImageListItem from "@mui/material/ImageListItem";
+import ImageListItemBar from "@mui/material/ImageListItemBar";
+import ListSubheader from "@mui/material/ListSubheader";
+import IconButton from "@mui/material/IconButton";
+import InfoIcon from "@mui/icons-material/Info";
+
 import "./ShowItemPage.css";
 function ShowItemPage() {
   const params = useParams();
@@ -30,20 +38,54 @@ function ShowItemPage() {
   }, []);
   console.log(movies, "222222222222222222");
   return (
-    <>
+    // <ImageList sx={{ width: 500, height: 450 }}>
+    //   <ImageListItem key="Subheader" cols={5}>
+    //     <ListSubheader component="div">December</ListSubheader>
+    //   </ImageListItem>
+    //   {movies.map((movie) => (
+    //     <ImageListItem key={movie.id}>
+    //       <img
+    //         style={{ width: "80%" }}
+    //         className="poster"
+    //         key={movie.id}
+    //         src={`https://media.themoviedb.org/t/p/w1920_and_h1080_multi_faces${movie.backdrop_path}`}
+    //         alt={movie.title || "movie image"}
+    //       />
+    //       <ImageListItemBar
+    //         title={movie?.name?.length > 0 ? movie.name : movie.title}
+    //         actionIcon={
+    //           <IconButton
+    //             sx={{ color: "rgba(255, 255, 255, 0.54)" }}
+    //             aria-label={`info about ${movie.title || movie.name}`}
+    //           >
+    //             <InfoIcon />
+    //           </IconButton>
+    //         }
+    //       />
+    //     </ImageListItem>
+    //   ))}{" "}
+    // </ImageList>
+
+    <div className="showitempic">
       {movies.map((movie) => (
-        <div className="showitempic">
+        <Box
+          sx={{
+            p: 2,
+            border: "1px dashed grey",
+            width: "20%",
+          }}
+        >
           <img
-            style={{ width: "20%" }}
+            style={{ width: "80%" }}
             className="poster"
             key={movie.id}
             src={`https://media.themoviedb.org/t/p/w1920_and_h1080_multi_faces${movie.backdrop_path}`}
             alt={movie.title || "movie image"}
           />
           <p>{movie?.name?.length > 0 ? movie.name : movie.title}</p>
-        </div>
+        </Box>
       ))}
-    </>
+    </div>
   );
 }
 
