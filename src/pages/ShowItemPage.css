@@ -2,6 +2,8 @@
   background-color: yellowgreen;
   top: 50px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  top: 500px;
+  margin-top: 70px;
+  align-items: center;
 }
