@@ -35,7 +35,7 @@ function ShowItemPage() {
       .catch(function (error) {
         console.error(error);
       });
-  }, []);
+  }, [params]);
   console.log(movies, "222222222222222222");
   return (
     <div className="showitempic">
