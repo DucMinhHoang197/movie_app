@@ -1,0 +1,5 @@
+.showitempic {
+  background-color: yellowgreen;
+  display: flex;
+  justify-content: space-between;
+}

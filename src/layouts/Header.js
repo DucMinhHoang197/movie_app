@@ -10,7 +10,7 @@ import "./Header.css";
 import SearchIcon from "@mui/icons-material/Search";
 import Typography from "@mui/material/Typography";
 import LogoutIcon from "@mui/icons-material/Logout";
-
+import ChooseTypeList from "../components/ChooseTypeList";
 function Header() {
   const auth = useAuth();
   let navigate = useNavigate();
@@ -97,7 +97,8 @@ function Header() {
           FAVORITE
         </button>
       </div>
-      <DropdownButton id="dropdown-basic-button" title="Choose_type">
+      <ChooseTypeList />
+      {/* <DropdownButton id="dropdown-basic-button" title="Choose_type">
         <DropdownButton id="dropdown-basic-button" title="TV LIST">
           <Dropdown.Item>
             {movieList.map((tvShow) => (
@@ -112,7 +113,7 @@ function Header() {
             ))}
           </Dropdown.Item>
         </DropdownButton>
-      </DropdownButton>
+      </DropdownButton> */}
 
       <div className="searchbt">
         {/* <div> */}

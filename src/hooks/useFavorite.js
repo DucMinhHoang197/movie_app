@@ -9,10 +9,10 @@ const useFavorite = () => {
     }
   }, []);
 
-  const toggleFavorite = (movie) => {
-    const newFavorites = favorites.includes(movie)
-      ? favorites.filter((favorite) => favorite !== movie)
-      : [...favorites, movie];
+  const toggleFavorite = (id, name, title, backdrop_path) => {
+    const newFavorites = favorites.includes(id)
+      ? favorites.filter((favorite) => favorite !== id)
+      : [...favorites, id];
     setFavorites(newFavorites);
     localStorage.setItem("favorites", JSON.stringify(newFavorites));
   };

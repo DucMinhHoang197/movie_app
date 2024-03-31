@@ -2,6 +2,7 @@ import * as React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import BlankLayout from "../layouts/BlankLayout";
 import MainLayout from "../layouts/MainLayout";
+
 import DetailPage from "../pages/DetailPage";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
@@ -9,6 +10,8 @@ import MoviePage from "../pages/MoviePage";
 import TvPage from "../pages/TvPage";
 import SearchPage from "../pages/SearchPage";
 import FavoritePage from "../pages/FavoritePage";
+import ShowItemPage from "../pages/ShowItemPage";
+
 import AuthRequire from "./AuthRequire";
 
 function Router() {
@@ -28,6 +31,7 @@ function Router() {
         <Route path="/detail/:type/:id" element={<DetailPage />} />
         <Route path="/search/:query" element={<SearchPage />} />
         <Route path="/favorite" element={<FavoritePage />} />
+        <Route path="/showitem/:name" element={<ShowItemPage />} />
       </Route>
 
       <Route element={<BlankLayout />}>

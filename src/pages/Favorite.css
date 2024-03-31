@@ -34,3 +34,6 @@ body {
   justify-content: center;
   align-items: center;
 }
+.poster {
+  top: 100px;
+}

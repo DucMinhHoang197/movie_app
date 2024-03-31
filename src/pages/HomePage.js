@@ -108,9 +108,9 @@ function HomePage() {
                   </div>
                   <button
                     className="bticon"
-                    onClick={() => toggleFavorite(movie)}
+                    onClick={() => toggleFavorite(movie.id)}
                   >
-                    {isMovieFavorite(movie) ? (
+                    {isMovieFavorite(movie.id) ? (
                       <FavoriteIcon />
                     ) : (
                       <FavoriteBorderIcon />
