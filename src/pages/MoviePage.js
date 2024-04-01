@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { MOVIE_DB } from "../constants/movieDB";
 import { generateRequestAction } from "../helpers/movieDB";
 import useFavorite from "../hooks/useFavorite";
-import { Header } from "../layouts";
 import useAuth from "../hooks/useAuth";
 
 import TheatersIcon from "@mui/icons-material/Theaters";
@@ -31,7 +30,7 @@ function MoviePage() {
   const handleClickButton = (type, id) => {
     navigate(`/detail/${type}/${id}`);
   };
-  const handleClickAdd = () => {};
+
   useEffect(() => {
     axios
       .request(requestOptions)
@@ -41,7 +40,7 @@ function MoviePage() {
       .catch(function (error) {
         console.error(error);
       });
-  }, []);
+  }, [requestOptions]);
 
   const [movies, setMovies] = useState([]);
   console.log(movies, "setMovies");
@@ -100,7 +99,15 @@ function MoviePage() {
                   </div>
                   <button
                     className="bticon"
-                    onClick={() => toggleFavorite(movie.id)}
+                    onClick={() =>
+                      toggleFavorite({
+                        id: movie.id,
+                        name: movie.name,
+                        title: movie.title,
+                        backdrop_path: movie.backdrop_path,
+                        type: movie.type,
+                      })
+                    }
                   >
                     {isMovieFavorite(movie.id) ? (
                       <FavoriteIcon />

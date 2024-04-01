@@ -29,9 +29,9 @@ function HomePage() {
   const auth = useAuth();
   let navigate = useNavigate();
   const [movies, setMovies] = useState([]);
-  const handleClickAdd = (id) => {
-    toggleFavorite(id);
-  };
+  // const handleClickAdd = (id) => {
+  //   toggleFavorite(id);
+  // };
   // console.log(toggleFavorite, "111111111111");
   const handleClickButton = (type, id) => {
     navigate(`/detail/${type}/${id}`);
@@ -47,11 +47,9 @@ function HomePage() {
       .catch(function (error) {
         console.error(error);
       });
-  }, []);
+  }, [requestOptions]);
 
-  if (!auth.user) {
-    return <p>You are not logged in.</p>;
-  }
+  !auth.user && <p>You are not logged in.</p>;
 
   return (
     <div className="SwiperSlide">
@@ -65,32 +63,42 @@ function HomePage() {
         className="mySwiper"
       >
         {movies.map((movie) => {
+          const {
+            name = "",
+            title,
+            release_date,
+            vote_average,
+            overview,
+            media_type,
+            id,
+            backdrop_path,
+          } = movie;
           return (
             <SwiperSlide>
               <img
                 className="poster"
-                key={movie.id}
-                src={`https://media.themoviedb.org/t/p/w1920_and_h1080_multi_faces${movie.backdrop_path}`}
-                alt={movie.title || "movie image"}
+                key={id}
+                src={`https://media.themoviedb.org/t/p/w1920_and_h1080_multi_faces${backdrop_path}`}
+                alt={title || "movie image"}
               />
               <div className="infor">
                 <div className="title">
                   <Typography variant="h5">
-                    {movie?.name?.length > 0 ? movie.name : movie.title}
+                    {name.length > 0 ? name : title}
                   </Typography>
                   <br />
                 </div>
 
                 <div className="text-icon">
                   <TheatersIcon />
-                  <Typography variant="h7"> {movie.release_date}</Typography>
+                  <Typography variant="h7"> {release_date}</Typography>
                   <InsertChartIcon />
-                  <Typography variant="h7"> {movie.vote_average}</Typography>
+                  <Typography variant="h7"> {vote_average}</Typography>
                 </div>
 
                 <div className="overview">
                   <br />
-                  <Typography variant="h10"> {movie.overview}</Typography>
+                  <Typography variant="h10"> {overview}</Typography>
                 </div>
                 <br />
 
@@ -99,16 +107,22 @@ function HomePage() {
                     <Button
                       variant="outlined"
                       sx={{ color: "white", border: "1px solid white" }}
-                      onClick={() =>
-                        handleClickButton(movie.media_type, movie.id)
-                      }
+                      onClick={() => handleClickButton(media_type, id)}
                     >
                       LEARN MORE
                     </Button>
                   </div>
                   <button
                     className="bticon"
-                    onClick={() => toggleFavorite(movie.id)}
+                    onClick={() =>
+                      toggleFavorite({
+                        id: movie.id,
+                        name: movie.name,
+                        title: movie.title,
+                        backdrop_path: movie.backdrop_path,
+                        type: movie.type,
+                      })
+                    }
                   >
                     {isMovieFavorite(movie.id) ? (
                       <FavoriteIcon />

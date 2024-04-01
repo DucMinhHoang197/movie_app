@@ -2,19 +2,11 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import useAuth from "../hooks/useAuth";
-
-// import TheatersIcon from "@mui/icons-material/Theaters";
-// import Typography from "@mui/material/Typography";
-// import InsertChartIcon from "@mui/icons-material/InsertChart";
-
-// import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import "./DetailPage.css";
 
 function DetailPage() {
-  const auth = useAuth();
   const [movies, setMovies] = useState();
   const params = useParams();
   console.log(params.type, "type");
@@ -60,9 +52,6 @@ function DetailPage() {
           <div className="box-details">
             <div className="original-title-details">
               {movies.original_name}{" "}
-              {/* <span className="release-date">
-                ({movies.first_air_date.substring(0, 4)})
-              </span> */}
             </div>
             <div className="genres-details">
               {movies.genres.map((item) => (
@@ -73,11 +62,6 @@ function DetailPage() {
               <p>Overview</p>
               {movies.overview}
             </div>
-            {/* <div className="created-by-details">
-              {movies.created_by.map((item) => (
-                <li>{item.name}</li>
-              ))}
-            </div> */}
           </div>
         </div>
       </div>

@@ -8,17 +8,15 @@ const useFavorite = () => {
       setFavorites(JSON.parse(favorites));
     }
   }, []);
+  const isMovieFavorite = (id) => favorites[id];
 
-  const toggleFavorite = (id, name, title, backdrop_path) => {
-    const newFavorites = favorites.includes(id)
-      ? favorites.filter((favorite) => favorite !== id)
-      : [...favorites, id];
+  const toggleFavorite = ({ id, name, title, backdrop_path, type }) => {
+    const newFavorites = isMovieFavorite(id)
+      ? { ...favorites, [id]: null }
+      : { ...favorites, [id]: { name, title, backdrop_path, type } };
+
     setFavorites(newFavorites);
     localStorage.setItem("favorites", JSON.stringify(newFavorites));
-  };
-
-  const isMovieFavorite = (id) => {
-    return favorites.includes(id);
   };
 
   return {
