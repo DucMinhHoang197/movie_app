@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 import useFavorite from "../hooks/useFavorite";
