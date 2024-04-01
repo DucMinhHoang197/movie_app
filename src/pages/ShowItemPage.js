@@ -10,6 +10,7 @@ function ShowItemPage() {
   const params = useParams();
   const [movies, setMovies] = useState([]);
   console.log(params, "params");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const options = {
     method: "GET",
     url: `https://api.themoviedb.org/3/search/collection?query=${params.name}&include_adult=false&language=en-US&page=1`,
@@ -29,7 +30,7 @@ function ShowItemPage() {
       .catch(function (error) {
         console.error(error);
       });
-  }, [params]);
+  }, [options, params]);
   console.log(movies, "222222222222222222");
   return (
     <div className="showitempic">

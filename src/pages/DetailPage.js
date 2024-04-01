@@ -11,6 +11,7 @@ function DetailPage() {
   const [movies, setMovies] = useState();
   const params = useParams();
   console.log(params.type, "type");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const options = {
     method: "GET",
     url: `https://api.themoviedb.org/3/${params.type}/${params.id}`,
@@ -31,7 +32,7 @@ function DetailPage() {
       .catch(function (error) {
         console.error(error);
       });
-  }, [params]);
+  }, [options, params]);
 
   console.log(movies);
 
