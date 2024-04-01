@@ -2,8 +2,6 @@ import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
 import useAuth from "../hooks/useAuth";
 
 import "./Header.css";
@@ -21,7 +19,9 @@ function Header() {
   //xu ly type
   const [movieList, setMovieList] = useState([]);
   const [tvList, setTvList] = useState([]);
-
+  console.log(movieList, setMovieList);
+  console.log(tvList, setTvList);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const optionTVList = {
     method: "GET",
     url: "https://api.themoviedb.org/3/genre/tv/list",
@@ -42,8 +42,9 @@ function Header() {
       .catch(function (error) {
         console.error(error);
       });
-  }, []);
+  }, [optionTVList]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const optionMovieList = {
     method: "GET",
     url: "https://api.themoviedb.org/3/genre/movie/list",
@@ -64,7 +65,7 @@ function Header() {
       .catch(function (error) {
         console.error(error);
       });
-  }, []);
+  }, [optionMovieList]);
   //////////////////////////
   const handleSearch = () => {
     navigate(`/search/${searchText}`);

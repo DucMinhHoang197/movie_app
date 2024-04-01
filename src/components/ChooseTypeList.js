@@ -16,6 +16,7 @@ export default function ChooseTypeList() {
   const [tvList, setTvList] = useState([]);
   let navigate = useNavigate();
   ///////////xu ly choose type list
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const optionTVList = {
     method: "GET",
     url: "https://api.themoviedb.org/3/genre/tv/list",
@@ -36,8 +37,9 @@ export default function ChooseTypeList() {
       .catch(function (error) {
         console.error(error);
       });
-  }, []);
+  }, [optionTVList]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const optionMovieList = {
     method: "GET",
     url: "https://api.themoviedb.org/3/genre/movie/list",
@@ -58,7 +60,7 @@ export default function ChooseTypeList() {
       .catch(function (error) {
         console.error(error);
       });
-  }, []);
+  }, [optionMovieList]);
   ///////////////////
   const [state, setState] = React.useState({
     // top: false,
