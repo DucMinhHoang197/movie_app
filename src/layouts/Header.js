@@ -89,20 +89,20 @@ function Header() {
 
   return (
     <div className="header">
-      {/* <Stack
-        direction={{ xs: "column", sm: "row" }}
-        spacing={{ xs: 1, sm: 2, md: 4 }}
-      > */}
       <div className="nav">
-        <h1 onClick={handleClickAll}>MTV</h1>
-        {/* <button className="transparent-button" onClick={handleClickMovie}>
-          MOVIE
-        </button> */}
+        <Typography
+          variant="h2"
+          sx={{ display: { xs: "none", sm: "block" } }}
+          onClick={handleClickAll}
+        >
+          MTV
+        </Typography>
+
         <Button
           onClick={handleClickMovie}
           sx={{ display: { xs: "none", sm: "block" } }}
         >
-          Movie
+          MOVIE
         </Button>
         <Button
           className="transparent-button"
@@ -136,7 +136,12 @@ function Header() {
           onChange={(e) => setSearchText(e.target.value)}
         />
         {/* <h3 className="login-text">Login</h3> */}
-        <Typography variant="h6" color="inherit" component="div">
+        <Typography
+          variant="h6"
+          color="inherit"
+          component="div"
+          sx={{ display: { xs: "none", sm: "block" } }}
+        >
           Welcome {user?.username}!
         </Typography>
         <button
@@ -148,7 +153,6 @@ function Header() {
           <LogoutIcon fontSize="small" />
         </button>
       </div>
-      {/* </Stack> */}
     </div>
   );
 }
