@@ -37,6 +37,7 @@ function HomePage() {
     navigate(`/detail/${type}/${id}`);
   };
   const requestOptions = generateRequestAction("GET", MOVIE_DB.GET_ALL);
+
   console.log(isMovieFavorite, "11111111");
   useEffect(() => {
     axios
@@ -47,7 +48,8 @@ function HomePage() {
       .catch(function (error) {
         console.error(error);
       });
-  }, [requestOptions]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   !auth.user && <p>You are not logged in.</p>;
 
@@ -61,6 +63,23 @@ function HomePage() {
         navigation={true}
         modules={[Pagination, Navigation]}
         className="mySwiper"
+        // breakpoints={{
+        //   // when window width is >= 320px
+        //   320: {
+        //     slidesPerView: 2,
+        //     spaceBetween: 20,
+        //   },
+        //   // when window width is >= 480px
+        //   480: {
+        //     slidesPerView: 3,
+        //     spaceBetween: 30,
+        //   },
+        //   // when window width is >= 640px
+        //   640: {
+        //     slidesPerView: 4,
+        //     spaceBetween: 40,
+        //   },
+        // }}
       >
         {movies.map((movie) => {
           const {

@@ -42,7 +42,8 @@ function TvPage() {
       .catch(function (error) {
         console.error(error);
       });
-  }, [requestOptions]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const [movies, setMovies] = useState([]);
   console.log(movies, setMovies);

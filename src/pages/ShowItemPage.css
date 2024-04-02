@@ -1,9 +1,11 @@
 .showitempic {
-  background-color: yellowgreen;
+  background-color: rgb(14, 15, 13);
   top: 50px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin-top: 70px;
   align-items: center;
+  width: 100%;
+  height: 100%px;
 }

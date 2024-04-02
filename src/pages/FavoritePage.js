@@ -1,7 +1,10 @@
 import React from "react";
-
-import ImageList from "@mui/material/ImageList";
-import ImageListItem from "@mui/material/ImageListItem";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import "./Favorite.css";
 
 const FavoritePage = () => {
@@ -12,21 +15,29 @@ const FavoritePage = () => {
   return (
     <div className="container">
       {Object.keys(dataObject).length === 0 && <p>No favorite movie</p>}
-      <ImageList sx={{}} cols={4} rowHeight={300}>
-        {Object.keys(dataObject).map((key) => {
-          const movie = dataObject[key];
-          return (
-            <ImageListItem key={key} className="image-list-item">
-              <img
-                className="poster"
-                src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
-                alt={movie.title || "movie image"}
-              />
-              <p className="title">{movie.title || movie.name}</p>
-            </ImageListItem>
-          );
-        })}
-      </ImageList>
+
+      {Object.keys(dataObject).map((key) => {
+        const movie = dataObject[key];
+        return (
+          <Card key={key} className="card">
+            <CardMedia
+              component="img"
+              height="140"
+              image={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+              alt={movie.title || "movie image"}
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                {movie.title || movie.name}
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Button size="small">Remove</Button>
+              <Button size="small">Learn More</Button>
+            </CardActions>
+          </Card>
+        );
+      })}
     </div>
   );
 };

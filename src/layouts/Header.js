@@ -8,6 +8,8 @@ import "./Header.css";
 import SearchIcon from "@mui/icons-material/Search";
 import Typography from "@mui/material/Typography";
 import LogoutIcon from "@mui/icons-material/Logout";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
 import ChooseTypeList from "../components/ChooseTypeList";
 function Header() {
   const auth = useAuth();
@@ -42,7 +44,8 @@ function Header() {
       .catch(function (error) {
         console.error(error);
       });
-  }, [optionTVList]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const optionMovieList = {
@@ -65,7 +68,8 @@ function Header() {
       .catch(function (error) {
         console.error(error);
       });
-  }, [optionMovieList]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   //////////////////////////
   const handleSearch = () => {
     navigate(`/search/${searchText}`);
@@ -85,18 +89,35 @@ function Header() {
 
   return (
     <div className="header">
+      {/* <Stack
+        direction={{ xs: "column", sm: "row" }}
+        spacing={{ xs: 1, sm: 2, md: 4 }}
+      > */}
       <div className="nav">
         <h1 onClick={handleClickAll}>MTV</h1>
-        <button className="transparent-button" onClick={handleClickMovie}>
+        {/* <button className="transparent-button" onClick={handleClickMovie}>
           MOVIE
-        </button>
-
-        <button className="transparent-button" onClick={handleClickTv}>
+        </button> */}
+        <Button
+          onClick={handleClickMovie}
+          sx={{ display: { xs: "none", sm: "block" } }}
+        >
+          Movie
+        </Button>
+        <Button
+          className="transparent-button"
+          onClick={handleClickTv}
+          sx={{ display: { xs: "none", sm: "block" } }}
+        >
           TV SHOW
-        </button>
-        <button className="transparent-button" onClick={handleClickFavorite}>
+        </Button>
+        <Button
+          className="transparent-button"
+          onClick={handleClickFavorite}
+          sx={{ display: { xs: "none", sm: "block" } }}
+        >
           FAVORITE
-        </button>
+        </Button>
       </div>
       <ChooseTypeList />
       <div className="searchbt">
@@ -126,8 +147,8 @@ function Header() {
         >
           <LogoutIcon fontSize="small" />
         </button>
-        {/* </div> */}
       </div>
+      {/* </Stack> */}
     </div>
   );
 }

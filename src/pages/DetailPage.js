@@ -32,7 +32,8 @@ function DetailPage() {
       .catch(function (error) {
         console.error(error);
       });
-  }, [options, params]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params]);
 
   console.log(movies);
 

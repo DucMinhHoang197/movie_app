@@ -37,7 +37,8 @@ export default function ChooseTypeList() {
       .catch(function (error) {
         console.error(error);
       });
-  }, [optionTVList]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const optionMovieList = {
@@ -60,7 +61,8 @@ export default function ChooseTypeList() {
       .catch(function (error) {
         console.error(error);
       });
-  }, [optionMovieList]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   ///////////////////
   const [state, setState] = React.useState({
     // top: false,
@@ -138,6 +140,7 @@ export default function ChooseTypeList() {
       {["TvList", "MvList"].map((anchor) => (
         <React.Fragment key={anchor}>
           <Button
+            sx={{ display: { xs: "none", sm: "block" } }}
             onClick={toggleDrawer(anchor, true)}
             style={{ color: "white", marginRight: "40px" }}
           >
