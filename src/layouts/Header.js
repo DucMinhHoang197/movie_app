@@ -98,26 +98,26 @@ function Header() {
           MTV
         </Typography>
 
-        <Button
+        <Typography
           onClick={handleClickMovie}
           sx={{ display: { xs: "none", sm: "block" } }}
         >
           MOVIE
-        </Button>
-        <Button
+        </Typography>
+        <Typography
           className="transparent-button"
           onClick={handleClickTv}
           sx={{ display: { xs: "none", sm: "block" } }}
         >
           TV SHOW
-        </Button>
-        <Button
+        </Typography>
+        <Typography
           className="transparent-button"
           onClick={handleClickFavorite}
           sx={{ display: { xs: "none", sm: "block" } }}
         >
           FAVORITE
-        </Button>
+        </Typography>
       </div>
       <ChooseTypeList />
       <div className="searchbt">

@@ -55,10 +55,10 @@ function ShowItemPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params]);
   console.log(movies, "222222222222222222");
-
   return (
     <div className="showitempic">
       {movies.map((movie) => {
+        console.log(movie.overview, "22222222222overview");
         const {
           name = "",
           title,
