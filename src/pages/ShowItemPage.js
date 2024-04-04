@@ -4,6 +4,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import MovieModal from "../components/MovieModal";
+
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -12,12 +14,20 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+
 import "./ShowItemPage.css";
+import { Stack } from "@mui/material";
 function ShowItemPage() {
   const params = useParams();
   let navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const [selectedOverview, setSelectedOverview] = useState("");
+
+  const handleOpen = (overview) => {
+    setSelectedOverview(overview.text);
+    setOpen(true);
+  };
   const handleClose = () => setOpen(false);
   const [movies, setMovies] = useState([]);
   const style = {
@@ -56,7 +66,7 @@ function ShowItemPage() {
   }, [params]);
   console.log(movies, "222222222222222222");
   return (
-    <div className="showitempic">
+    <Stack mt="90px">
       {movies.map((movie) => {
         console.log(movie.overview, "22222222222overview");
         const {
@@ -77,50 +87,50 @@ function ShowItemPage() {
         ) {
           imageURL = "/image/videoImage.jpg";
         }
-        console.log(imageURL, "imageURL");
+        console.log(overview, "imageURL");
         return (
-          <>
-            <Card sx={{ Width: 200, Height: 200 }}>
-              <CardMedia
-                height="150"
-                component="img"
-                className="poster"
-                // key={id}
-                src={imageURL}
-                alt={title || "movie image"}
-              />
-              <CardContent>
-                <Typography variant="h6" component="div">
-                  {movie?.name?.length > 0 ? name : title}
-                </Typography>
-              </CardContent>
+          <Box
+            sx={{
+              display: "flex",
+              flex: 1,
+              flexDirection: "column",
+              height: "100%",
+            }}
+          >
+            <Grid bgcolor="red" container spacing={2}>
+              <Grid item xs={6} md={8}>
+                <Card sx={{ Width: 200, Height: 200 }}>
+                  <CardMedia
+                    height="150"
+                    component="img"
+                    className="poster"
+                    // key={id}
+                    src={imageURL}
+                    alt={title || "movie image"}
+                  />
+                  <CardContent>
+                    <Typography variant="h6" component="div">
+                      {movie?.name?.length > 0 ? name : title}
+                    </Typography>
+                  </CardContent>
 
-              <CardActions>
-                <Button onClick={handleOpen} size="small">
-                  Learn More
-                </Button>
-              </CardActions>
-            </Card>
-            <Modal
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
-            >
-              <Box sx={style}>
-                <Typography id="modal-modal-title" variant="h7" component="h2">
-                  {overview}
-                </Typography>
-
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                  {vote_average}
-                </Typography>
-              </Box>
-            </Modal>
-          </>
+                  <CardActions>
+                    <Button onClick={handleOpen} size="small">
+                      Learn More
+                    </Button>
+                  </CardActions>
+                </Card>
+                <MovieModal
+                  open={open}
+                  onClose={handleClose}
+                  overview={selectedOverview}
+                />
+              </Grid>
+            </Grid>
+          </Box>
         );
       })}
-    </div>
+    </Stack>
   );
 }
 

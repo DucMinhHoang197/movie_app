@@ -4,10 +4,10 @@ import { Stack } from "@mui/material";
 import Header from "../layouts/Header";
 function MainLayout() {
   return (
-    <Stack sx={{ minHeight: "100vh" }}>
+    <>
       <Header />
       <Outlet />
-    </Stack>
+    </>
   );
 }
 

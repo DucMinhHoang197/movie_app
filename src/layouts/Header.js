@@ -9,14 +9,34 @@ import SearchIcon from "@mui/icons-material/Search";
 import Typography from "@mui/material/Typography";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
+import MoreIcon from "@mui/icons-material/MoreVert";
 import ChooseTypeList from "../components/ChooseTypeList";
+
+// import { styled, alpha } from '@mui/material/styles';
+// import AppBar from '@mui/material/AppBar';
+// import Box from '@mui/material/Box';
+// import Toolbar from '@mui/material/Toolbar';
+import IconButton from "@mui/material/IconButton";
+// import Typography from "@mui/material/Typography";
+import InputBase from "@mui/material/InputBase";
+import Badge from "@mui/material/Badge";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+// import SearchIcon from '@mui/icons-material/Search';
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import MailIcon from "@mui/icons-material/Mail";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+// import MoreIcon from "@mui/icons-material/MoreVert";
+
 function Header() {
   const auth = useAuth();
   let navigate = useNavigate();
   // const urlMovie = useStore((state) => state.urlMovie);
   const { user } = useAuth();
   const [searchText, setSearchText] = useState("");
+
+  const [isMobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
   //xu ly type
   const [movieList, setMovieList] = useState([]);
@@ -86,9 +106,52 @@ function Header() {
   const handleClickFavorite = () => {
     navigate("/favorite");
   };
+  const handleMobileMenuClose = () => {
+    setMobileMenuOpen(null);
+  };
+  const handleMobileMenuOpen = () => {
+    setMobileMenuOpen(true);
+  };
+
+  const renderMobileMenu = (
+    <Menu
+      // anchorEl={mobileMoreAnchorEl}
+      anchorOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      // id={mobileMenuId}
+      keepMounted
+      transformOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      open={isMobileMenuOpen}
+      onClose={handleMobileMenuClose}
+    >
+      <Typography
+        variant="h2"
+        sx={{ display: { xs: "none", sm: "block" } }}
+        onClick={handleClickAll}
+      >
+        MTV
+      </Typography>
+    </Menu>
+  );
 
   return (
     <div className="header">
+      <IconButton
+        size="large"
+        aria-label="show more"
+        // aria-controls={mobileMenuId}
+        aria-haspopup="true"
+        onClick={handleMobileMenuOpen}
+        color="inherit"
+        sx={{ display: { xs: "block", md: "none" } }}
+      >
+        <MoreIcon />
+      </IconButton>
       <div className="nav">
         <Typography
           variant="h2"
