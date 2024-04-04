@@ -1,4 +1,7 @@
 import React from "react";
+
+import useFavorite from "../hooks/useFavorite";
+
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -8,6 +11,7 @@ import Typography from "@mui/material/Typography";
 import "./Favorite.css";
 
 const FavoritePage = () => {
+  const { toggleFavorite, isMovieFavorite } = useFavorite();
   const data = localStorage.getItem("favorites");
   const dataObject = JSON.parse(data) || {};
   console.log(dataObject, "data");
