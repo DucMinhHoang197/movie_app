@@ -45,14 +45,13 @@ function BoxShowItem({ movie }) {
     <Box
       sx={{
         display: "flex",
-        flex: 1,
-        flexDirection: "column",
-        height: "100%",
+        justifyContent: "space-between",
+        // border: "1px solid",
       }}
     >
-      <Grid bgcolor="red" container spacing={2}>
-        <Grid item xs={6} md={8}>
-          <Card sx={{ Width: 200, Height: 200 }}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={4}>
+          <Card sx={{ margin: "10px" }}>
             <CardMedia
               height="150"
               component="img"
@@ -88,11 +87,6 @@ function BoxShowItem({ movie }) {
               </Typography>
             </Box>
           </Modal>
-          {/* <MovieModal
-                  open={open}
-                  onClose={handleClose}
-                  overview={selectedOverview}
-                /> */}
         </Grid>
       </Grid>
     </Box>

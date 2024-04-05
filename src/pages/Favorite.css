@@ -1,10 +1,7 @@
 .container {
-  margin-top: 60px;
-  background-color: bisque;
-  max-width: 100%;
   display: flex;
-
-  padding: 5px;
+  flex-direction: column;
+  /* padding: 5px; */
 }
 .card {
   margin: 5px;
