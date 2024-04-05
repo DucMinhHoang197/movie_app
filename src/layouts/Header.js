@@ -12,14 +12,8 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import ChooseTypeList from "../components/ChooseTypeList";
 import Box from "@mui/material/Box";
 
-// import { styled, alpha } from '@mui/material/styles';
-// import AppBar from '@mui/material/AppBar';
-
-// import Toolbar from '@mui/material/Toolbar';
 import IconButton from "@mui/material/IconButton";
-// import Typography from "@mui/material/Typography";
-import InputBase from "@mui/material/InputBase";
-import Badge from "@mui/material/Badge";
+
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -30,9 +24,6 @@ function Header() {
 
   const { user } = useAuth();
   const [searchText, setSearchText] = useState("");
-
-  const [isMobileMenuOpen, setMobileMenuOpen] = React.useState(false);
-  const pages = ["Products", "Pricing", "Blog"];
 
   //xu ly type
   const [movieList, setMovieList] = useState([]);
@@ -104,21 +95,13 @@ function Header() {
   };
   /////////////////mobie
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
   };
 
   return (
