@@ -1,6 +1,5 @@
 import React from "react";
-
-import useFavorite from "../hooks/useFavorite";
+import { useNavigate } from "react-router-dom";
 
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -11,17 +10,30 @@ import Typography from "@mui/material/Typography";
 import "./Favorite.css";
 
 const FavoritePage = () => {
-  const { toggleFavorite, isMovieFavorite } = useFavorite();
   const data = localStorage.getItem("favorites");
+  let navigate = useNavigate();
   const dataObject = JSON.parse(data) || {};
-  console.log(dataObject, "data");
+  console.log(dataObject, "dataaaaaaaaaaaaaaaaa");
+  const handleClickButton = (type, id) => {
+    navigate(`/detail/${type}/${id}`);
+  };
+  const handleRemove = (key) => {
+    const data = localStorage.getItem("favorites");
+    const dataObject = JSON.parse(data) || {};
 
+    if (dataObject.hasOwnProperty(key)) {
+      delete dataObject[key];
+      window.location.reload();
+      localStorage.setItem("favorites", JSON.stringify(dataObject));
+    }
+  };
   return (
     <div className="container">
       {Object.keys(dataObject).length === 0 && <p>No favorite movie</p>}
 
       {Object.keys(dataObject).map((key) => {
         const movie = dataObject[key];
+
         return (
           <Card key={key} className="card">
             <CardMedia
@@ -36,8 +48,15 @@ const FavoritePage = () => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small">Remove</Button>
-              <Button size="small">Learn More</Button>
+              <Button size="small" onClick={() => handleRemove(key)}>
+                Remove
+              </Button>
+              <Button
+                size="small"
+                onClick={() => handleClickButton(movie.media_type, movie.id)}
+              >
+                Learn More
+              </Button>
             </CardActions>
           </Card>
         );

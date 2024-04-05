@@ -10,10 +10,14 @@ const useFavorite = () => {
   }, []);
   const isMovieFavorite = (id) => favorites[id];
 
-  const toggleFavorite = ({ id, name, title, backdrop_path, type }) => {
-    const newFavorites = isMovieFavorite(id)
-      ? { ...favorites, [id]: null }
-      : { ...favorites, [id]: { name, title, backdrop_path, type } };
+  const toggleFavorite = ({ id, name, title, backdrop_path, media_type }) => {
+    const newFavorites = { ...favorites };
+
+    if (isMovieFavorite(id)) {
+      delete newFavorites[id];
+    } else {
+      newFavorites[id] = { id, name, title, backdrop_path, media_type };
+    }
 
     setFavorites(newFavorites);
     localStorage.setItem("favorites", JSON.stringify(newFavorites));

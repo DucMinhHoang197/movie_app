@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
+import Box from "@mui/material/Box";
+import { Typography } from "@mui/material";
 import "swiper/css";
 import "./DetailPage.css";
 
@@ -39,35 +41,64 @@ function DetailPage() {
 
   if (movies) {
     return (
-      <div className="details-container">
-        <div className="details-container-background">
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          position: "relative",
+          backdropFilter: "blur(10px)",
+          bgcolor: "rgba(0, 0, 0, 0.2)", // Add position relative to the parent box
+        }}
+      >
+        <img
+          resizeMode="auto"
+          src={`https://media.themoviedb.org/t/p/w1920_and_h1080_multi_faces/${movies.backdrop_path}`}
+        />
+
+        <Box
+          sx={{
+            position: "absolute",
+            marginLeft: "10%",
+            top: "50%",
+            transform: "translateY(-50%)",
+            // height: "600px",
+          }}
+        >
           <img
-            resizeMode="auto"
-            src={`https://media.themoviedb.org/t/p/w1920_and_h1080_multi_faces/${movies.backdrop_path}`}
+            src={`https://image.tmdb.org/t/p/w500${movies.poster_path}`}
           ></img>
-        </div>
-        <div className="image-inner">
-          <div className="box-poster">
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movies.poster_path}`}
-            ></img>
-          </div>
-          <div className="box-details">
-            <div className="original-title-details">
-              {movies.original_name}{" "}
-            </div>
-            <div className="genres-details">
-              {movies.genres.map((item) => (
-                <li>{item.name}</li>
-              ))}
-            </div>
-            <div className="overview-details">
-              <p>Overview</p>
-              {movies.overview}
-            </div>
-          </div>
-        </div>
-      </div>
+        </Box>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%", // Add top 50% to vertically center the box
+            transform: "translateY(-50%)", // Add transform to adjust the vertical position
+            marginLeft: "40%",
+            width: "auto",
+            height: "",
+            color: "white",
+          }}
+        >
+          <Typography variant="h1" gutterBottom>
+            {movies.original_name || movies.title}
+            <br />
+          </Typography>
+          <Typography variant="h5" gutterBottom>
+            {movies.genres.map((item) => (
+              <li>{item.name}</li>
+            ))}
+          </Typography>
+          <br />
+          <br />
+          <Typography variant="h5" gutterBottom>
+            Overview :
+            <br />
+          </Typography>
+          <Typography variant="subtitle1" gutterBottom>
+            {movies.overview}
+          </Typography>
+        </Box>
+      </Box>
     );
   }
 }

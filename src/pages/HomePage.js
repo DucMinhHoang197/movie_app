@@ -29,16 +29,12 @@ function HomePage() {
   const auth = useAuth();
   let navigate = useNavigate();
   const [movies, setMovies] = useState([]);
-  // const handleClickAdd = (id) => {
-  //   toggleFavorite(id);
-  // };
-  // console.log(toggleFavorite, "111111111111");
   const handleClickButton = (type, id) => {
     navigate(`/detail/${type}/${id}`);
   };
   const requestOptions = generateRequestAction("GET", MOVIE_DB.GET_ALL);
 
-  console.log(isMovieFavorite, "11111111");
+  console.log(movies, "11111111");
   useEffect(() => {
     axios
       .request(requestOptions)
@@ -63,23 +59,6 @@ function HomePage() {
         navigation={true}
         modules={[Pagination, Navigation]}
         className="mySwiper"
-        // breakpoints={{
-        //   // when window width is >= 320px
-        //   320: {
-        //     slidesPerView: 2,
-        //     spaceBetween: 20,
-        //   },
-        //   // when window width is >= 480px
-        //   480: {
-        //     slidesPerView: 3,
-        //     spaceBetween: 30,
-        //   },
-        //   // when window width is >= 640px
-        //   640: {
-        //     slidesPerView: 4,
-        //     spaceBetween: 40,
-        //   },
-        // }}
       >
         {movies.map((movie) => {
           const {
@@ -139,7 +118,7 @@ function HomePage() {
                         name: movie.name,
                         title: movie.title,
                         backdrop_path: movie.backdrop_path,
-                        type: movie.type,
+                        media_type: movie.media_type,
                       })
                     }
                   >
