@@ -159,6 +159,7 @@ function Header() {
       </Box>
       <div className="nav">
         <Typography
+          className="transparent-button"
           variant="h2"
           sx={{ display: { xs: "none", sm: "block" } }}
           onClick={handleClickAll}
@@ -167,6 +168,7 @@ function Header() {
         </Typography>
 
         <Typography
+          className="transparent-button"
           onClick={handleClickMovie}
           sx={{ display: { xs: "none", sm: "block" } }}
         >

@@ -33,7 +33,7 @@ function ShowItemPage() {
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params]);
-
+  console.log(movies, "dataaaaaaaaaaaaaaa");
   return (
     <Stack mt="90px">
       {movies.map((movie) => {

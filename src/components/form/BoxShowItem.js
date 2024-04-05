@@ -80,11 +80,11 @@ function BoxShowItem({ movie }) {
             aria-describedby="modal-modal-description"
           >
             <Box sx={style}>
-              <Typography id="modal-modal-title" variant="h6" component="h2">
-                {`Text in a modal ${movie.name}`}
+              <Typography id="modal-modal-title" variant="h5" component="h2">
+                {`Name: ${movie.name}`}
               </Typography>
-              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+              <Typography variant="subtitle1" gutterBottom sx={{ mt: 2 }}>
+                {movie.overview}
               </Typography>
             </Box>
           </Modal>

@@ -38,8 +38,8 @@ body {
   color: #eee;
   /* background-color: red; */
   width: 30%;
-  left: 100px;
-  top: 400px;
+  left: 10%;
+  top: 30%;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
 }

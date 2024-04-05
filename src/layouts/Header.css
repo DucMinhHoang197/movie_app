@@ -57,6 +57,9 @@
   outline: inherit;
   color: aliceblue;
 }
+.transparent-button:hover {
+  color: lightcyan;
+}
 .choose_type {
   display: flex;
   align-items: center;

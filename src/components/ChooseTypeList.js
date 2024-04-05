@@ -85,6 +85,7 @@ export default function ChooseTypeList() {
   const list = (anchor) => {
     const handleListItemClick = (name) => {
       navigate(`/showitem/${name}`);
+      window.location.reload();
       console.log(name, "clickkkkkkkkkkkkkkk");
     };
     if (anchor === "MvList") {
