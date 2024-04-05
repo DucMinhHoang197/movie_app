@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -36,36 +37,38 @@ const FavoritePage = () => {
         const movie = dataObject[key];
 
         return (
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
-              <Card key={key} className="card">
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
-                  alt={movie.title || "movie image"}
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    {movie.title || movie.name}
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <Button size="small" onClick={() => handleRemove(key)}>
-                    Remove
-                  </Button>
-                  <Button
-                    size="small"
-                    onClick={() =>
-                      handleClickButton(movie.media_type, movie.id)
-                    }
-                  >
-                    Learn More
-                  </Button>
-                </CardActions>
-              </Card>
+          <Box sx={{ flexGrow: 1 }}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} md={4}>
+                <Card key={key} className="card">
+                  <CardMedia
+                    component="img"
+                    height="140"
+                    image={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+                    alt={movie.title || "movie image"}
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                      {movie.title || movie.name}
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small" onClick={() => handleRemove(key)}>
+                      Remove
+                    </Button>
+                    <Button
+                      size="small"
+                      onClick={() =>
+                        handleClickButton(movie.media_type, movie.id)
+                      }
+                    >
+                      Learn More
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Grid>
             </Grid>
-          </Grid>
+          </Box>
         );
       })}
     </div>
